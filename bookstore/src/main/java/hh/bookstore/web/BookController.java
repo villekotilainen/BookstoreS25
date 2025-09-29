@@ -35,7 +35,7 @@ public class BookController {
     }
 
     // Poistaa kirjan ID:n perusteella
-    @GetMapping("/books/delete/{id}")
+    @PostMapping("/books/delete/{id}")
     public String delete(@PathVariable Long id) {
         bookRepository.deleteById(id);
         return "redirect:/books"; // Uudelleenohjaa kirjalistaan
