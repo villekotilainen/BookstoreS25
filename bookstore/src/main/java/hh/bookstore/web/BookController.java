@@ -2,6 +2,7 @@ package hh.bookstore.web;
 
 import hh.bookstore.domain.Book;
 import hh.bookstore.repositories.BookRepository;
+import hh.bookstore.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,9 @@ public class BookController {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     // Hakee kaikki kirjat
     @GetMapping("/books")
     public String getAllBooks(Model model) {
@@ -23,6 +27,7 @@ public class BookController {
     // Hakee lomakkeen uuden kirjan luomiseen
     @GetMapping("/books/new")
     public String getNewForm(Model model) {
+        model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("book", new Book());
         return "newbook"; // Palauttaa näkymän uuden kirjan lomakkeelle
     }
