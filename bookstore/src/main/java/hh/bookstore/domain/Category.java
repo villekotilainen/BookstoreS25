@@ -1,9 +1,14 @@
 package hh.bookstore.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Category {
@@ -14,11 +19,16 @@ public class Category {
 
     private String name;
 
+    // One-to-many relationship with Book
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Book> books;
+
     public Category() {}
 
     public Category(String name) {
         super();
         this.name = name;
+        this.books = new ArrayList<>();
     }
 
     // Getters and setters
@@ -37,6 +47,14 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     @Override  
