@@ -14,6 +14,7 @@
             <thead class="table-light">
                 <tr>
                     <th>Title</th>
+                    <th>Category</th>
                     <th>Author</th>
                     <th>Year</th>
                     <th>ISBN</th>
@@ -24,6 +25,7 @@
             <tbody>
                 <tr th:each="book : ${books}">
                     <td th:text="${book.title}">Title</td>
+                    <td th:text="${book.category.name}">Category</td>
                     <td th:text="${book.author}">Author</td>
                     <td th:text="${book.year}">Year</td>
                     <td th:text="${book.isbn}">ISBN</td>
