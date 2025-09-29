@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .actions {
+            white-space: nowrap;
+        }
+        .btn {
+            padding: 4px 10px;
+            margin-right: 4px;
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-edit {
+            background: #388e3c;
+        }
+        .btn-new {
+            background: #0288d1;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book List</h1>
+    <a href="/books/new" class="btn btn-new">Add New Book</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>ISBN</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- List books dynamically using Thymeleaf -->
+            <tr th:each="book : ${books}">
+                <td th:text="${book.title}">Title</td>
+                <td th:text="${book.author}">Author</td>
+                <td th:text="${book.year}">Year</td>
+                <td th:text="${book.isbn}">ISBN</td>
+                <td th:text="${book.price}">Price</td>
+                <td class="actions">
+                    <a th:href="@{'/books/edit/' + ${book.id}}" class="btn btn-edit">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

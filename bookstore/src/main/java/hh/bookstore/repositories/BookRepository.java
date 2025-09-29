@@ -10,5 +10,5 @@ import hh.bookstore.domain.Book;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
     
-    List<Book> findByBookTitle(String bookTitle);
+    List<Book> findByTitle(String title);
 }
